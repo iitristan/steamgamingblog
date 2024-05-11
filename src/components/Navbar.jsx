@@ -1,25 +1,27 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  const location = useLocation();
+
   return (
     <nav className="bg-gray-900 text-white py-4">
       <div className="container mx-auto flex justify-between items-center px-8">
         <div className="flex space-x-4">
           <div className="text-lg font-bold">Gaming Blog</div>
           <div className="space-x-4">
-            <a to="/" className="px-4 hover:text-green-400">
+            <Link to="/" className={`px-4 hover:text-green-400 ${location.pathname === '/' ? 'text-green-400' : ''}`}>
               Home
-            </a>
-            <a to="/games" className="px-4 hover:text-green-400">
+            </Link>
+            <Link to="/games" className={`px-4 hover:text-green-400 ${location.pathname === '/games' ? 'text-green-400' : ''}`}>
               Games
-            </a>
-            <a to="/collections" className="px-4 hover:text-green-400">
+            </Link>
+            <Link to="/collections" className={`px-4 hover:text-green-400 ${location.pathname === '/collections' ? 'text-green-400' : ''}`}>
               Collections
-            </a>
-            <a to="/wishlist" className="px-4 hover:text-green-400">
+            </Link>
+            <Link to="/wishlist" className={`px-4 hover:text-green-400 ${location.pathname === '/wishlist' ? 'text-green-400' : ''}`}>
               Wishlist
-            </a>
+            </Link>
           </div>
         </div>
         <div className="flex items-center space-x-4">
