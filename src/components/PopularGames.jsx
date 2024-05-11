@@ -4,12 +4,7 @@ const games = [
   { id: 1, name: "V Rising", price: "~$24.12", img: "/picture.jpg" },
   { id: 2, name: "Steelrising", price: "~$1.72", img: "/picture.jpg" },
   { id: 3, name: "Hi-Fi RUSH", price: "~$7.59", img: "/picture.jpg" },
-  {
-    id: 4,
-    name: "Assassin's Creed Mirage",
-    price: "~$14.99",
-    img: "/picture.jpg",
-  },
+  { id: 4, name: "Assassin's Creed Mirage", price: "~$14.99", img: "/picture.jpg" },
   { id: 5, name: "Hades II", price: "~$29.99", img: "/picture.jpg" },
 ];
 
