@@ -10,7 +10,7 @@ const deals = [
 
 const GameCard = ({ deal }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg p-4">
+    <div className="gamecard shadow-lg rounded-lg p-4">
       <img
         src="/picture.jpg"
         alt={deal.name}

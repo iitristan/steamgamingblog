@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
+
 const Navbar = () => {
   const location = useLocation();
 
@@ -8,8 +9,8 @@ const Navbar = () => {
     <nav className="bg-gray-900 text-white py-4">
       <div className="container mx-auto flex justify-between items-center px-8">
         <div className="flex space-x-4">
-          <div className="text-lg font-bold">Montano's</div>
-          <div className="space-x-4">
+          <div className="text-lg font-bold"><img className="logo" src="Logo.png" alt="logo"></img></div>
+          <div className="navlist">
             <Link to="/" className={`px-4 hover:text-red-600 ${location.pathname === '/' ? 'text-red-600' : ''}`}>
               Home
             </Link>

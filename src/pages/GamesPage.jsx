@@ -6,7 +6,7 @@ const GamesPage = () => {
         <div>
             <h1>Games Page</h1>
             <p>Welcome to the Games Page!</p>
-        <NewDeals />
+            <NewDeals />
         </div>
     );
 }
