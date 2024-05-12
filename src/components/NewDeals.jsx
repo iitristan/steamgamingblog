@@ -20,7 +20,7 @@ const GameCard = ({ deal }) => {
         <h3 className="text-md font-semibold truncate">{deal.name}</h3>
         <div className="flex justify-between items-center mt-1">
           <span className="text-green-600">{deal.discount}</span>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2">
             Add to Wishlist
           </button>
           <span className="font-bold">{deal.price}</span>

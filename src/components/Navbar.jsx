@@ -29,7 +29,7 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search"
-            className="px-4 py-2 rounded bg-gray-800 text-white focus:outline-none"
+            className="searchbar px-4 py-2 rounded bg-gray-600 text-white focus:outline-none"
           />
         </div>
       </div>
