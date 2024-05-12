@@ -10,6 +10,7 @@ const games = [
 
 const GameCard = ({ game }) => {
   return (
+    <body>
     <div className="text-center">
       <div className="w-200 h-200 bg-gray-300 flex items-center justify-center overflow-hidden">
         <img
@@ -21,8 +22,10 @@ const GameCard = ({ game }) => {
       <h3 className="mt-2 text-sm font-semibold">{game.name}</h3>
       <p className="text-sm">{game.price}</p>
     </div>
+    </body>
   );
 };
+
 
 const PopularGames = () => {
   return (
