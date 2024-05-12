@@ -27,10 +27,6 @@ code {
   padding-top: 15px;
 }
 
-.gamecard {
-  background-color: #4C5265;
-}
-
 .searchbar{
   margin: 30px;
   background: none;
@@ -54,6 +50,7 @@ button::after {
  line-height: 1;
  outline: transparent;
  position: relative;
+ box-shadow: 6px 0px 0px #00e6f6;
 }
 
 button::after {
@@ -70,6 +67,7 @@ button::after {
  left: 0;
  right: 0;
  bottom: 0;
+ box-shadow: 6px 0px 0px #00e6f6;
  background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, #ff013c 5%);
  text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
  clip-path: var(--slice-0);
@@ -135,4 +133,34 @@ button:hover::after {
   clip-path: var(--slice-1);
   transform: translate(0);
  }
+}
+
+.card {
+  box-sizing: border-box;
+  background-color: #4C5265;
+  border: 1px solid darkgray;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  cursor: pointer;
+  transition: all 0.5s;
+  font-weight: bolder;
+  color: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 12px;
+  gap: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+}
+
+.card:active {
+  transform: scale(0.95) rotateZ(1.7deg);
 }

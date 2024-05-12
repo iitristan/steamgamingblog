@@ -10,7 +10,6 @@ const games = [
 
 const GameCard = ({ game }) => {
   return (
-    <body>
     <div className="text-center">
       <div className="w-200 h-200 bg-gray-300 flex items-center justify-center overflow-hidden">
         <img
@@ -22,19 +21,14 @@ const GameCard = ({ game }) => {
       <h3 className="mt-2 text-sm font-semibold">{game.name}</h3>
       <p className="text-sm">{game.price}</p>
     </div>
-    </body>
   );
 };
-
 
 const PopularGames = () => {
   return (
     <div className="container mx-auto px-10 my-8">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Most Popular Games</h2>
-        <a href="1" className="text-blue-500 hover:text-blue-700">
-          See All
-        </a>
       </div>
       <div className="grid grid-cols-5 gap-4">
         {games.map((game) => (
