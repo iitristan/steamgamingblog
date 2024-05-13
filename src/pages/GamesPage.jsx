@@ -1,10 +1,10 @@
 import React from 'react';
-import NewDeals from "../components/NewDeals";
+import GamesList from '../components/GamesList';
 
-const GamesPage = ({ addToWishlist }) => {
+const GamesPage = ({ addToWishlist, searchQuery }) => {
     return (
         <div>
-        <NewDeals onAddToWishlist={addToWishlist}/>
+        <GamesList onAddToWishlist={addToWishlist} searchQuery={searchQuery}/>
         </div>
     );
 }

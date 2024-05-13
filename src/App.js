@@ -5,12 +5,14 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import CollectionsPage from "./pages/CollectionsPage";
 import WishlistPage from "./pages/WishlistPage";
-import NewDeals from "./components/NewDeals";
 import PopularGames from "./components/PopularGames";
 import GamesPage from "./pages/GamesPage";
+import GamesList from "./components/GamesList";
+
 
 function App() {
   const [wishlistItems, setWishlistItems] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const storedWishlist = JSON.parse(localStorage.getItem("wishlistItems")) || [];
@@ -21,26 +23,27 @@ function App() {
     localStorage.setItem("wishlistItems", JSON.stringify(wishlistItems));
   }, [wishlistItems]);
 
-  const addToWishlist = (deal) => {
-    if (!wishlistItems.find((item) => item.id === deal.id)) {
-      setWishlistItems([...wishlistItems, deal]);
+  const addToWishlist = (game) => {
+    if (!wishlistItems.find((item) => item.id === game.id)) {
+      setWishlistItems([...wishlistItems, game]);
     }
   };
 
-  const removeFromWishlist = (dealId) => {
-    const updatedWishlist = wishlistItems.filter(item => item.id !== dealId);
+  const removeFromWishlist = (gameId) => {
+    const updatedWishlist = wishlistItems.filter(item => item.id !== gameId);
     setWishlistItems(updatedWishlist);
   };
 
+  
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <Navbar setSearchQuery={setSearchQuery} />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage addToWishlist={addToWishlist} wishlistItems={wishlistItems} />} />
           <Route
             path="/newdeals"
-            element={<NewDeals addToWishlist={addToWishlist} wishlistItems={wishlistItems} />}
+            element={<GamesList addToWishlist={addToWishlist} wishlistItems={wishlistItems} searchQuery={searchQuery} />}
           />
           <Route path="/collections" element={<CollectionsPage />} />
           <Route
@@ -48,7 +51,7 @@ function App() {
             element={<WishlistPage wishlistItems={wishlistItems} removeFromWishlist={removeFromWishlist} />}
           />
           <Route path="/populargames" element={<PopularGames addToWishlist={addToWishlist} wishlistItems={wishlistItems} />} />
-          <Route path="/games"  element={<GamesPage  addToWishlist={addToWishlist} />} />
+          <Route path="/games"  element={<GamesPage  addToWishlist={addToWishlist} searchQuery={searchQuery} />} />
         </Routes>
       </div>
     </Router>

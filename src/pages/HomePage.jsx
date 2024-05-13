@@ -1,9 +1,9 @@
 import React from 'react';
 import PopularGames from "../components/PopularGames";
-const HomePage = () => {
+function HomePage({addToWishlist, searchQuery}) {
     return (
         <div>
-            <PopularGames />
+            <PopularGames onAddToWishlist={addToWishlist} searchQuery={searchQuery} />
         </div>
     );
 }

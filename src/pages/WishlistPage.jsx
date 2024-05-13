@@ -1,5 +1,5 @@
 import React from "react";
-import GameCard from "../components/gamecard"; 
+import GameCard from "../components/GameCard"; 
 
 const WishlistPage = ({ wishlistItems = [], removeFromWishlist }) => { 
   return (
@@ -10,10 +10,10 @@ const WishlistPage = ({ wishlistItems = [], removeFromWishlist }) => {
         <div className="text-center">No items in wishlist</div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {wishlistItems.map((deal) => (
+          {wishlistItems.map((game) => (
             <GameCard
-              key={deal.id}
-              deal={deal}
+              key={game.id}
+              game={game}
               onRemoveFromWishlist={removeFromWishlist}
               wishlistItems={wishlistItems}
             />

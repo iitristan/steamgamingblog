@@ -1,42 +1,80 @@
 import React from "react";
+import { useState, useEffect} from "react";
+import axios from "axios";
+import GameCard from "./GameCard";
 
-const games = [
-  { id: 1, name: "V Rising", price: "~$24.12", img: "/picture.jpg" },
-  { id: 2, name: "Steelrising", price: "~$1.72", img: "/picture.jpg" },
-  { id: 3, name: "Hi-Fi RUSH", price: "~$7.59", img: "/picture.jpg" },
-  { id: 4, name: "Assassin's Creed Mirage", price: "~$14.99", img: "/picture.jpg" },
-  { id: 5, name: "Hades II", price: "~$29.99", img: "/picture.jpg" },
-];
 
-const GameCard = ({ game }) => {
+const API_KEY = '88b0dcd0cabd45c8ba3f2e6d7ab68d32'
+
+function PopularGames ({onAddToWishlist, wishlistItems, searchQuery}) {
+
+  const [games, setGames] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1); //pang track ng current page
+
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const response = await axios.get('https://api.rawg.io/api/games', {
+          params: {
+            key: API_KEY,
+            dates: '2024-01-01,2024-12-31',
+            page: currentPage.toString(), // Get the first page of results
+            page_size: 20, // 20 items per page
+            search: searchQuery,
+          }
+
+          
+        });
+        
+        console.log('Games data:', response.data);
+        setGames(prevGames => [...prevGames, ...response.data.results]); // Append new results to existing games
+        setGames(response.data.results);
+      } catch (error) {
+        console.error('Error fetching games:', error);
+      }
+    };
+    
+
+    fetchGames();
+  }, [currentPage, searchQuery]);
+
+  const loadMore = () => {
+    setCurrentPage(prevPage => prevPage + 1); // Navigate to next page
+  };
+
+  const loadPrevious = () => {
+    if (currentPage > 1) {
+      setCurrentPage(prevPage => prevPage - 1); // Decrement page (previous)
+    }
+  };
+
   return (
-    <div className="text-center">
-      <div className="w-200 h-200 bg-gray-300 flex items-center justify-center overflow-hidden">
-        <img
-          src={game.img}
-          alt={game.name}
-          className="max-w-full max-h-full cursor-pointer"
-        />
-      </div>
-      <h3 className="mt-2 text-sm font-semibold">{game.name}</h3>
-      <p className="text-sm">{game.price}</p>
-    </div>
-  );
-};
-
-const PopularGames = () => {
-  return (
-    <div className="container mx-auto px-10 my-8">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-8">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Most Popular Games</h2>
+        <h2 className="text-2xl font-bold">Popular Games today</h2>
       </div>
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {games.map((game) => (
-          <GameCard key={game.id} game={game} />
+          <GameCard
+            key={game.id}
+            game={game}
+            onAddToWishlist={onAddToWishlist}
+            wishlistItems={wishlistItems}
+          />
         ))}
       </div>
+      <div className="flex justify-center">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" onClick={loadPrevious}>
+          Previous Page
+        </button>
+
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" onClick={loadMore}>
+          Next Page
+        </button>
+      </div>
     </div>
   );
 };
+
 
 export default PopularGames;

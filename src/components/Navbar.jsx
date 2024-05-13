@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-const Navbar = () => {
+function Navbar ({setSearchQuery}) {
   const location = useLocation();
+  const [query, setQuery] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchQuery(query);
+  };
 
   return (
     <nav className="bg-gray-900 text-white py-4">
@@ -44,11 +50,16 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex items-center space-x-4">
+          <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search for a game..."
             className="searchbar px-4 py-2 rounded bg-gray-800 text-white focus:outline-none"
           />
+          <button type="submit">Search</button>
+          </form>
         </div>
       </div>
     </nav>
