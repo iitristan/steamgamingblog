@@ -19,7 +19,7 @@ function PopularGames ({onAddToWishlist, wishlistItems, searchQuery}) {
             key: API_KEY,
             dates: '2024-01-01,2024-12-31',
             page: currentPage.toString(), // Get the first page of results
-            page_size: 20, // 20 items per page
+            page_size: 8, // 8 items per page
             search: searchQuery,
           }
 

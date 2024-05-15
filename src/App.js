@@ -8,7 +8,7 @@ import WishlistPage from "./pages/WishlistPage";
 import PopularGames from "./components/PopularGames";
 import GamesPage from "./pages/GamesPage";
 import GamesList from "./components/GamesList";
-
+import { GameCollectionProvider } from "./contexts/GameCollectionContext";
 
 function App() {
   const [wishlistItems, setWishlistItems] = useState([]);
@@ -34,27 +34,28 @@ function App() {
     setWishlistItems(updatedWishlist);
   };
 
-  
   return (
-    <Router>
-      <div className="App">
-        <Navbar setSearchQuery={setSearchQuery} />
-        <Routes>
-          <Route path="/" element={<HomePage addToWishlist={addToWishlist} wishlistItems={wishlistItems} />} />
-          <Route
-            path="/newdeals"
-            element={<GamesList addToWishlist={addToWishlist} wishlistItems={wishlistItems} searchQuery={searchQuery} />}
-          />
-          <Route path="/collections" element={<CollectionsPage />} />
-          <Route
-            path="/wishlist"
-            element={<WishlistPage wishlistItems={wishlistItems} removeFromWishlist={removeFromWishlist} />}
-          />
-          <Route path="/populargames" element={<PopularGames addToWishlist={addToWishlist} wishlistItems={wishlistItems} />} />
-          <Route path="/games"  element={<GamesPage  addToWishlist={addToWishlist} searchQuery={searchQuery} />} />
-        </Routes>
-      </div>
-    </Router>
+    <GameCollectionProvider>
+      <Router>
+        <div className="App">
+          <Navbar setSearchQuery={setSearchQuery} />
+          <Routes>
+            <Route path="/" element={<HomePage addToWishlist={addToWishlist} wishlistItems={wishlistItems} />} />
+            <Route
+              path="/newdeals"
+              element={<GamesList addToWishlist={addToWishlist} wishlistItems={wishlistItems} searchQuery={searchQuery} />}
+            />
+            <Route path="/collections" element={<CollectionsPage />} />
+            <Route
+              path="/wishlist"
+              element={<WishlistPage wishlistItems={wishlistItems} removeFromWishlist={removeFromWishlist} />}
+            />
+            <Route path="/populargames" element={<PopularGames addToWishlist={addToWishlist} wishlistItems={wishlistItems} />} />
+            <Route path="/games" element={<GamesPage addToWishlist={addToWishlist} searchQuery={searchQuery} />} />
+          </Routes>
+        </div>
+      </Router>
+    </GameCollectionProvider>
   );
 }
 

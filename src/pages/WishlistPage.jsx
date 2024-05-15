@@ -1,5 +1,5 @@
 import React from "react";
-import GameCard from "../components/GameCard"; 
+import GameCard from "../components/GameCard";
 
 const WishlistPage = ({ wishlistItems = [], removeFromWishlist }) => { 
   return (
