@@ -18,7 +18,7 @@ function HomePage({ addToWishlist, searchQuery }) {
           Popular Games
         </h2>
         <p>Explore some popular game options</p>
-        <PopularGames onAddToWishlist={addToWishlist} />
+        
       </main>
     </div>
   );
