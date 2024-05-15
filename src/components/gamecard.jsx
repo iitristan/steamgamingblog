@@ -34,27 +34,27 @@ const GameCard = ({ game, onAddToWishlist, onRemoveFromWishlist, wishlistItems =
           <span className="font-bold">{game.price}</span>
         </div>
         <div className="flex justify-between items-center mt-4">
-          {game.short_screenshots.map((screenshot, index) => (
+          {game.short_screenshots.slice(0, 3).map((screenshot, index) => (
             <img
               key={index}
               src={screenshot.image}
               alt={`Screenshot ${index + 1}`}
-              className="w-20 h-20 object-cover rounded-lg shadow-md"
+              className="w-20 h-20 object-cover rounded-lg shadow-md mr-1"
             />
           ))}
         </div>
         <button
           onClick={handleClick}
-          className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 w-full ${isWishlisted ? "bg-red-500" : "bg-blue-500"}`}
+          className={`btn2 text-white font-bold py-2 px-4 rounded mt-4 w-full ${isWishlisted ? "bg-red-500" : "bg-blue-500"}`}
         >
           {isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
         </button>
         <select
           value={selectedCollection}
           onChange={(e) => setSelectedCollection(e.target.value)}
-          className="mt-2"
+          className="mt-2 option1"
         >
-          <option value="">Select collection</option>
+          <option value="" className="option1">Select collection</option>
           {useGameCollection().collections.map(collection => (
             <option key={collection.name} value={collection.name}>
               {collection.name}
@@ -63,7 +63,7 @@ const GameCard = ({ game, onAddToWishlist, onRemoveFromWishlist, wishlistItems =
         </select>
         <button
           onClick={handleAddToCollection}
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 w-full"
+          className="btn2 text-white font-bold py-2 px-4 rounded mt-4 w-full"
         >
           Add to Collection
         </button>

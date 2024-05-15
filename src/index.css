@@ -42,8 +42,8 @@ code {
 
 }
 
-button,
-button::after {
+.btn2,
+.btn2::after {
  font-size: 18px;
  background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
  border: 0;
@@ -51,10 +51,10 @@ button::after {
  line-height: 1;
  outline: transparent;
  position: relative;
- box-shadow: 6px 0px 0px #00e6f6;
+ box-shadow: 4px 0px 0px #00e6f6;
 }
 
-button::after {
+.btn2::after {
  --slice-0: inset(50% 50% 50% 50%);
  --slice-1: inset(80% -6px 0 0);
  --slice-2: inset(50% -6px 30% 0);
@@ -68,13 +68,13 @@ button::after {
  left: 0;
  right: 0;
  bottom: 0;
- box-shadow: 6px 0px 0px #00e6f6;
+ box-shadow: 4px 0px 0px #00e6f6;
  background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, #ff013c 5%);
  text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
  clip-path: var(--slice-0);
 }
 
-button:hover::after {
+.btn2:hover::after {
  animation: 1s glitch;
  animation-timing-function: steps(2, end);
 }
@@ -152,7 +152,7 @@ button:hover::after {
   flex-direction: column;
   justify-content: end;
   padding: 12px;
-  gap: 12px;
+  gap: 1px;
   border-radius: 8px;
   cursor: pointer;
 }
@@ -165,3 +165,65 @@ button:hover::after {
 .card:active {
   transform: scale(0.95) rotateZ(1.7deg);
 }
+
+.btn1 {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 24px;
+  font-size: 15px;
+  color: white;
+  border: 2px solid red;
+  border-radius: 34px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden;
+}
+
+.btn1::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: red;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.btn1:hover::before {
+  scale: 3;
+}
+
+.btn1:hover {
+  color: #212121;
+  scale: 1.1;
+  box-shadow: 0 0px 20px #4C5265;
+}
+
+.btn1:active {
+  scale: 1;
+}
+
+ .prev {
+justify-content: center;
+margin-right: 10px;
+ }
+
+ .next{
+justify-content: center;
+margin-left: 10px;
+ }
+
+ .option1{
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 50;
+ }
+
+ .div1{
+  margin-top: 20px;
+ }

@@ -58,7 +58,7 @@ function Navbar ({setSearchQuery}) {
             placeholder="Search for a game..."
             className="searchbar px-4 py-2 rounded bg-gray-800 text-white focus:outline-none"
           />
-          <button type="submit">Search</button>
+          <button type="submit" className="btn1">Search</button>
           </form>
         </div>
       </div>
