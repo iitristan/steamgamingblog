@@ -18,6 +18,7 @@ function GamesList({
   const [query, setQuery] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
   const buttonRef = useRef(null);
 
   useEffect(() => {
@@ -37,6 +38,7 @@ function GamesList({
 
   useEffect(() => {
     const fetchGames = async () => {
+      setLoading(true);
       try {
         const response = await axios.get("https://api.rawg.io/api/games", {
           params: {
@@ -56,6 +58,8 @@ function GamesList({
         }
       } catch (error) {
         console.error("Error fetching games:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -92,10 +96,7 @@ function GamesList({
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-8">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Games</h2>
-        <form
-          onSubmit={handleSubmit}
-          className="flex space-x-2 items-center"
-        >
+        <form onSubmit={handleSubmit} className="flex space-x-2 items-center">
           <input
             type="text"
             value={query}
@@ -110,6 +111,8 @@ function GamesList({
           >
             Search
           </button>
+        </form>
+        <div className="relative">
           <button
             type="button"
             onClick={toggleDropdown}
@@ -122,7 +125,8 @@ function GamesList({
             <div
               className="absolute bg-white shadow-md rounded mt-2 py-2 z-10"
               style={{
-                top: buttonRef.current.offsetTop + buttonRef.current.offsetHeight,
+                top:
+                  buttonRef.current.offsetTop + buttonRef.current.offsetHeight,
                 left: buttonRef.current.offsetLeft,
               }}
             >
@@ -143,32 +147,40 @@ function GamesList({
               ))}
             </div>
           )}
-        </form>
+        </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {games.map((game) => (
-          <GameCard
-            key={game.id}
-            game={game}
-            onAddToWishlist={onAddToWishlist}
-            wishlistItems={wishlistItems}
-          />
-        ))}
-      </div>
-      <div className="flex justify-center space-x-2 mt-4">
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={loadPrevious}
-        >
-          Previous Page
-        </button>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={loadMore}
-        >
-          Next Page
-        </button>
-      </div>
+      {loading ? (
+        <div className="flex justify-center items-center h-64">
+          <div className="loader border-t-4 border-blue-500 rounded-full w-16 h-16 animate-spin"></div>
+        </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {games.map((game) => (
+              <GameCard
+                key={game.id}
+                game={game}
+                onAddToWishlist={onAddToWishlist}
+                wishlistItems={wishlistItems}
+              />
+            ))}
+          </div>
+          <div className="flex justify-center space-x-2 mt-4">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={loadPrevious}
+            >
+              Previous Page
+            </button>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={loadMore}
+            >
+              Next Page
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
