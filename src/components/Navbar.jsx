@@ -5,13 +5,12 @@ function Navbar () {
   const location = useLocation();
 
   return (
-    <nav className="bg-gray-900 text-white py-4">
-      <div className="container mx-auto flex justify-between items-center px-8">
-        <div className="flex space-x-4">
-          <div className="text-lg font-bold"><img src="Logo.png" alt="logo" className="logo"></img></div>
-          <div className="container mx-auto">
-            <div className="flex justify-center">
-          <div className="navlist flex space-x-4">
+    <div className="bg-gray-900 text-white py-4 h-full">
+      <div className="container mx-auto flex justify-center items-center h-full px-8">
+        <div className="flex space-x-4 items-center">
+        <div className="text-lg font-bold"><img src="Logo.png" alt="logo" className="logo"></img></div>
+          <div className="flex-grow"></div> {/* This will push the links to the center */}
+          <div className="navlist flex justify-center space-x-4">
             <Link
               to="/"
               className={`px-4 hover:text-red-600 ${
@@ -41,14 +40,13 @@ function Navbar () {
               className={`px-4 hover:text-red-600 ${
                 location.pathname === "/wishlist" ? "text-red-600" : ""
               }`}
-            > Wishlist
+            >
+              Wishlist
             </Link>
-            </div>
-          </div>
           </div>
         </div>
       </div>
-    </nav>
+    </div>
   );
 };
 

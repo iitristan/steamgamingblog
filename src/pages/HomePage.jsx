@@ -16,7 +16,7 @@ function HomePage({ addToWishlist, searchQuery }) {
             </p>
             <Link
               to="/games"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block"
+              className="btn2 text-white font-bold py-2 px-4 rounded inline-block"
             >
               Explore
             </Link>
@@ -24,7 +24,6 @@ function HomePage({ addToWishlist, searchQuery }) {
 
           <div className="lg:w-1/2 flex justify-center">
             {" "}
-            {/* Center the image */}
             <img
               src="/qs.svg"
               alt="Game Controller"

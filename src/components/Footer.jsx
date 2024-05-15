@@ -8,12 +8,12 @@ function Footer() {
           <div className="text-center md:text-left mb-4 md:mb-0">
             <h4 className="text-lg font-semibold">GameFly</h4>
             <p className="text-sm">
-              © {new Date().getFullYear()} ©2024 GameFly. All rights reserved .
+              © {new Date().getFullYear()} GameFly. All rights reserved .
             </p>
           </div>
         </div>
       </div>
-      <div className="mario absolute bottom-0 left-0 w-full">
+      <div className="mario">
         <div class="tooltip-mario-container">
           <div class="box"></div>
           <div class="mush"></div>

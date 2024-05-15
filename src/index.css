@@ -8,7 +8,7 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #323949;
+  background-color: #111827;
   color: white;
 }
 
@@ -17,10 +17,9 @@ code {
     monospace;
 }
 
-/* Add this CSS to your stylesheet */
 .loader {
   border: 4px solid rgba(0, 0, 0, 0.1);
-  border-top: 4px solid #3498db;
+  border-top: 4px solid red;
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -44,8 +43,6 @@ code {
 
 .navlist {
   padding-top: 15px;
-  margin-left: 410px;
-  justify-items: center;
 }
 
 .searchbar {
@@ -65,13 +62,13 @@ code {
 .btn2,
 .btn2::after {
   font-size: 18px;
-  background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
+  background: linear-gradient( transparent 5%, #ff013c 5%);
   border: 0;
   color: #fff;
   line-height: 1;
   outline: transparent;
   position: relative;
-  box-shadow: 4px 0px 0px #00e6f6;
+  box-shadow: 4px 2px 2px #00e6f6;
 }
 
 .btn2::after {
@@ -106,16 +103,17 @@ code {
 }
 
 footer {
-  position: relative; /* This is key to make absolute positioning within the footer work */
+  position: relative;
   bottom: 0;
   width: 100%;
 }
 
+.game1{
+  justify-content: flex-end;
+}
+
 .mario {
-  position: absolute; /* Position Mario absolutely within the footer */
-  bottom: 0; /* Place Mario at the very bottom of the footer */
-  left: 0;  
-  width: 100%;
+  bottom: 0;
 }
 
 @keyframes glitch {
@@ -219,6 +217,9 @@ footer {
   overflow: hidden;
 }
 
+.border1 {
+  border: 2px solid red;
+}
 .btn1::before {
   content: "";
   position: absolute;
@@ -249,11 +250,13 @@ footer {
 
 .prev {
   justify-content: center;
+  margin-top: 2000px;
   margin-right: 10px;
 }
 
 .next {
   justify-content: center;
+  margin-top: 20px;
   margin-left: 10px;
 }
 

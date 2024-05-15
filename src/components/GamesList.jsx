@@ -94,7 +94,7 @@ function GamesList({
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-8">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-end items-center mb-4">
         <h2 className="text-2xl font-bold">Games</h2>
         <form onSubmit={handleSubmit} className="flex space-x-2 items-center">
           <input
@@ -131,7 +131,7 @@ function GamesList({
               }}
             >
               <button
-                className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white w-full text-left"
+                className="block px-4 py-2 text-gray-700 hover:bg-red-500 hover:text-white w-full text-left"
                 onClick={() => handleGenreChange("")}
               >
                 All Genres
@@ -139,13 +139,13 @@ function GamesList({
               {genres.map((genre) => (
                 <button
                   key={genre.id}
-                  className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white w-full text-left"
+                  className="block px-4 py-2 text-gray-700 hover:bg-red-500 hover:text-white w-full text-left"
                   onClick={() => handleGenreChange(genre.slug)}
                 >
                   {genre.name}
                 </button>
               ))}
-            </div>
+              </div>
           )}
         </div>
       </div>
@@ -167,13 +167,13 @@ function GamesList({
           </div>
           <div className="flex justify-center space-x-2 mt-4">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="btn1 text-white font-bold py-2 px-4 rounded"
               onClick={loadPrevious}
             >
               Previous Page
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="btn1 text-white font-bold py-2 px-4 rounded"
               onClick={loadMore}
             >
               Next Page
