@@ -18,7 +18,7 @@ function GamesList ({onAddToWishlist, wishlistItems, searchQuery}) {
           params: {
             key: API_KEY,
             page: currentPage.toString(), // Get the first page of results
-            page_size: 20, // 20 items per page
+            page_size: 8, // 8 items per page
             search: searchQuery,
           }
 
