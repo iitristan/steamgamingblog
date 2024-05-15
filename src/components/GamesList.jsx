@@ -92,11 +92,5 @@ function GamesList({setSearchQuery, onAddToWishlist, wishlistItems, searchQuery}
   );
 };
 
-GamesList.propTypes = {
-  onAddToWishlist: PropTypes.func.isRequired,
-  wishlistItems: PropTypes.array.isRequired,
-  searchQuery: PropTypes.string.isRequired,
-  setSearchQuery: PropTypes.func.isRequired,
-};
 
 export default GamesList;
