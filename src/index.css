@@ -27,6 +27,7 @@ code {
 .navlist {
   padding-top: 15px;
   margin-left: 410px;
+  justify-items: center;
 }
 
 .searchbar{
