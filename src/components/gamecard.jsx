@@ -30,8 +30,8 @@ const GameCard = ({ game, onAddToWishlist, onRemoveFromWishlist, wishlistItems =
       <div className="p-4">
         <h3 className="text-lg font-semibold mb-2">{game.name}</h3>
         <div className="flex justify-between items-center">
-          <span className="text-green-600">{game.rating}</span>
-          <span className="font-bold">{game.price}</span>
+          <span className="text-green-600">Rating: {game.rating}⭐</span>
+          <span className="font-bold">{game.released}</span>
         </div>
         <div className="flex justify-between items-center mt-4">
           {game.short_screenshots.slice(0, 3).map((screenshot, index) => (
@@ -50,11 +50,11 @@ const GameCard = ({ game, onAddToWishlist, onRemoveFromWishlist, wishlistItems =
           {isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
         </button>
         <select
+          className="mt-2 option1 appearance-none relative text-white-600 ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-black-700 text-sm font-bold rounded-lg focus:ring-black-500 focus:border-black-500 block w-full p-2.5"
           value={selectedCollection}
           onChange={(e) => setSelectedCollection(e.target.value)}
-          className="mt-2 option1"
         >
-          <option value="" className="option1">Select collection</option>
+          <option value="" className="option1">Select Collection</option>
           {useGameCollection().collections.map(collection => (
             <option key={collection.name} value={collection.name}>
               {collection.name}

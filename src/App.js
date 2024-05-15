@@ -51,7 +51,7 @@ function App() {
               element={<WishlistPage wishlistItems={wishlistItems} removeFromWishlist={removeFromWishlist} />}
             />
             <Route path="/populargames" element={<PopularGames addToWishlist={addToWishlist} wishlistItems={wishlistItems} />} />
-            <Route path="/games" element={<GamesPage addToWishlist={addToWishlist} searchQuery={searchQuery} />} />
+            <Route path="/games" element={<GamesPage addToWishlist={addToWishlist} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>} />
           </Routes>
         </div>
       </Router>

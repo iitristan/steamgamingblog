@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import GameCard from "./GameCard";
-import { useGameCollection } from "../contexts/GameCollectionContext";
+import PropTypes from 'prop-types';
 
 const API_KEY = '88b0dcd0cabd45c8ba3f2e6d7ab68d32';
 
-function GamesList({ onAddToWishlist, wishlistItems, searchQuery }) {
+function GamesList({setSearchQuery, onAddToWishlist, wishlistItems, searchQuery}) {
   const [games, setGames] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -22,8 +23,11 @@ function GamesList({ onAddToWishlist, wishlistItems, searchQuery }) {
         });
 
         console.log('Games data:', response.data);
-        setGames(prevGames => [...prevGames, ...response.data.results]);
-        setGames(response.data.results);
+        if (currentPage === 1) {
+          setGames(response.data.results);
+        } else {
+          setGames(prevGames => [...prevGames, ...response.data.results]);
+        }
       } catch (error) {
         console.error('Error fetching games:', error);
       }
@@ -42,8 +46,27 @@ function GamesList({ onAddToWishlist, wishlistItems, searchQuery }) {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchQuery(query);
+    setCurrentPage(1);
+  };
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-8">
+      <div className="flex items-center space-x-4">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search for a game..."
+            className="searchbar px-4 py-2 rounded bg-gray-800 text-white focus:outline-none"
+            required
+          />
+          <button type="submit" className="btn1">Search</button>
+        </form>
+      </div>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Games</h2>
       </div>
@@ -67,6 +90,13 @@ function GamesList({ onAddToWishlist, wishlistItems, searchQuery }) {
       </div>
     </div>
   );
+};
+
+GamesList.propTypes = {
+  onAddToWishlist: PropTypes.func.isRequired,
+  wishlistItems: PropTypes.array.isRequired,
+  searchQuery: PropTypes.string.isRequired,
+  setSearchQuery: PropTypes.func.isRequired,
 };
 
 export default GamesList;
