@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
-import { useGameCollection } from '../contexts/GameCollectionContext';
-import GameCard from '../components/GameCard';
+import React, { useState } from "react";
+import { useGameCollection } from "../contexts/GameCollectionContext";
+import GameCard from "../components/GameCard";
 
 const CollectionsPage = () => {
-  const { collections, addCollection, removeCollection, addGameToCollection, removeGameFromCollection } = useGameCollection();
-  const [newCollectionName, setNewCollectionName] = useState('');
+  const {
+    collections,
+    addCollection,
+    removeCollection,
+    addGameToCollection,
+    removeGameFromCollection,
+  } = useGameCollection();
+  const [newCollectionName, setNewCollectionName] = useState("");
   const [selectedCollection, setSelectedCollection] = useState(null);
 
   const handleAddCollection = () => {
-    if (newCollectionName.trim() !== '') {
+    if (newCollectionName.trim() !== "") {
       addCollection(newCollectionName);
-      setNewCollectionName('');
+      setNewCollectionName("");
     }
   };
 
@@ -24,7 +30,12 @@ const CollectionsPage = () => {
           onChange={(e) => setNewCollectionName(e.target.value)}
           placeholder="New collection name"
         />
-        <button onClick={handleAddCollection} className="bg-blue-500 text-white px-4 py-2 rounded">Add Collection</button>
+        <button
+          onClick={handleAddCollection}
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Add Collection
+        </button>
       </div>
       {collections.length === 0 ? (
         <div className="text-center">No collections available</div>
@@ -33,15 +44,22 @@ const CollectionsPage = () => {
           {collections.map((collection) => (
             <div key={collection.name}>
               <h3 className="text-lg font-bold">{collection.name}</h3>
-              <button onClick={() => removeCollection(collection.name)} className="bg-red-500 text-white px-2 py-1 rounded">Delete Collection</button>
+              <button
+                onClick={() => removeCollection(collection.name)}
+                className="bg-red-500 text-white px-2 py-1 rounded"
+              >
+                Delete Collection
+              </button>
               {collection.games.length === 0 ? (
                 <div className="text-center">No games in this collection</div>
               ) : (
                 collection.games.map((game) => (
-                  <GameCard 
+                  <GameCard
                     key={game.id}
                     game={game}
-                    onRemoveFromWishlist={() => removeGameFromCollection(collection.name, game.id)}
+                    onRemoveFromWishlist={() =>
+                      removeGameFromCollection(collection.name, game.id)
+                    }
                   />
                 ))
               )}

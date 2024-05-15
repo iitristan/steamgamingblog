@@ -13,12 +13,7 @@ function HomePage({ addToWishlist, searchQuery }) {
         </div>
         <img src="/gamer.svg" alt="Game Controller" className="w-50" />
       </div>
-      <main className="container mx-auto py-6 px-6">
-        <h2 className="text-2xl font-semibold mb-4 text-center">
-          Popular Games
-        </h2>
-        <p>Explore some popular game options</p>
-      </main>
+      <main className="container mx-auto py-6 px-6"></main>
       <PopularGames onAddToWishlist={addToWishlist} />
     </div>
   );
