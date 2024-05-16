@@ -8,7 +8,6 @@ import WishlistPage from "./pages/WishlistPage";
 import PopularGames from "./components/PopularGames";
 import GamesPage from "./pages/GamesPage";
 import GamesList from "./components/GamesList";
-import Footer from "./components/Footer";
 import { GameCollectionProvider } from "./contexts/GameCollectionContext";
 
 function App() {
@@ -95,7 +94,6 @@ function App() {
           </div>
         </Router>
       </GameCollectionProvider>
-      <Footer />
     </>
   );
 }

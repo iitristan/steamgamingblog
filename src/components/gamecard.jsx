@@ -18,12 +18,12 @@ const GameCard = ({
   const handleClick = () => {
     if (isWishlisted) {
       setSuccessMessage("Already in Wishlist");
-      return; // Don't add again
+      return;
     }
 
     onAddToWishlist(game);
     setSuccessMessage("Added to Wishlist!");
-    setIsAddedToWishlist(true); // New state to track if the game is added to wishlist
+    setIsAddedToWishlist(true);
   };
 
   const handleAddToCollection = () => {

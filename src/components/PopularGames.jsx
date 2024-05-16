@@ -29,7 +29,7 @@ function PopularGames({ onAddToWishlist, wishlistItems, searchQuery }) {
         if (currentPage === 1) {
           setGames(response.data.results);
         } else {
-          setGames((prevGames) => [...prevGames, ...response.data.results]);
+          setGames(response.data.results);
         }
       } catch (error) {
         console.error("Error fetching games:", error);
