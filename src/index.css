@@ -35,6 +35,10 @@ code {
   }
 }
 
+.footer {
+  bottom: 0;
+  position: fixed;
+}
 .logo {
   height: 50px;
   width: 75px;

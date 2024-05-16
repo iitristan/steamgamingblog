@@ -22,7 +22,7 @@ function Navbar () {
             <Link
               to="/games"
               className={`px-4 hover:text-red-600 ${
-                location.pathname === "/games" ? "text-red-4600" : ""
+                location.pathname === "/games" ? "text-red-600" : ""
               }`}
             >
               Games

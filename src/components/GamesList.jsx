@@ -95,7 +95,7 @@ function GamesList({
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-8">
       <div className="flex justify-end items-center mb-4">
-        <h2 className="text-2xl font-bold">Games</h2>
+        <span className="text1 text-2xl font-bold">Games</span>
         <form onSubmit={handleSubmit} className="flex space-x-2 items-center">
           <input
             type="text"
