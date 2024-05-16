@@ -44,7 +44,7 @@ function GamesList({
           params: {
             key: API_KEY,
             page: currentPage.toString(),
-            page_size: 8,
+            page_size: 16,
             search: searchQuery,
             genres: selectedGenre || undefined, // Set genres param to undefined if no genre is selected
           },

@@ -60,7 +60,6 @@ const CollectionsPage = () => {
       setUpdatedCollectionName("");
     }
   };
-
   const renderGames = (collection) => {
     const pageIndex = pageIndexes[collection.name] || 0;
     const gamesToShow = collection.games.slice(
@@ -74,13 +73,16 @@ const CollectionsPage = () => {
           <div className="text-center">No games in this collection</div>
         ) : (
           gamesToShow.map((game) => (
-            <div key={game.id} className="mb-2">
+            <div
+              key={game.id}
+              className="flex items-center text-right justify-between mb-2"
+            >
               <span>{game.name}</span>
               <button
                 onClick={() =>
                   removeGameFromCollection(collection.name, game.id)
                 }
-                className="btn1 bg-red-500 text-white px-2 py-1 rounded ml-2"
+                className="btn1 bg-red-500 text-white px-2 py-1 rounded"
               >
                 Remove
               </button>
@@ -130,36 +132,39 @@ const CollectionsPage = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {collections.map((collection) => (
-            <div
-              key={collection.name}
-              className="border1 border p-4 rounded"
-              onMouseEnter={() => handleEditCollection(collection.name)}
-              onMouseLeave={() => setEditingCollection(null)}
-            >
-              {editingCollection === collection.name ? (
-                <div>
-                  <input
-                    type="text"
-                    value={updatedCollectionName}
-                    onChange={(e) => setUpdatedCollectionName(e.target.value)}
-                    className="option1 border border-gray-300 px-2 py-1 rounded mr-2"
-                  />
-                  <button
-                    onClick={handleUpdateCollectionName}
-                    className="btn1 bg-blue-500 text-white px-2 py-1 rounded"
-                  >
-                    Save
-                  </button>
-                </div>
-              ) : (
-                <h3 className="text-lg font-bold mb-2">{collection.name}</h3>
-              )}
+            <div key={collection.name} className="border1 border p-4 rounded">
+              <h3
+                onMouseEnter={() => handleEditCollection(collection.name)}
+                onMouseLeave={() => setEditingCollection(null)}
+                className="text-lg font-bold mb-2"
+              >
+                {editingCollection === collection.name ? (
+                  <div className="flex items-center">
+                    <input
+                      type="text"
+                      value={updatedCollectionName}
+                      onChange={(e) => setUpdatedCollectionName(e.target.value)}
+                      className="option1 border border-gray-300 py-1 rounded mr-2 w-full sm:w-50"
+                      placeholder="New collection name"
+                    />
+                    <button
+                      onClick={handleUpdateCollectionName}
+                      className="btn1 bg-blue-500 text-white py-1 rounded w-full sm:w-auto flex items-center justify-center" // Added flex and justify-center classes
+                    >
+                      Save
+                    </button>
+                  </div>
+                ) : (
+                  collection.name
+                )}
+              </h3>
               <button
                 onClick={() => removeCollection(collection.name)}
                 className="btn1 bg-red-500 text-white px-2 py-1 rounded mb-2"
               >
                 Delete Collection
               </button>
+              <hr className="mb-3"/>
               {renderGames(collection)}
             </div>
           ))}

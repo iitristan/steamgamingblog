@@ -18,7 +18,11 @@ function Navbar() {
     <nav className="bg-gray-900 text-white py-4 px-8 container mx-auto">
       <div className="flex items-center justify-between">
         {/* Logo */}
-        <img src="Logo.png" alt="logo" className="logo text-lg font-bold mt-2" />
+        <img
+          src="Logo.png"
+          alt="logo"
+          className="logo text-lg font-bold mt-2"
+        />
 
         {/* Navigation links (hidden on mobile) */}
         <ul className="hidden lg:flex space-x-4">
