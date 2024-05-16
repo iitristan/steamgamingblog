@@ -5,10 +5,10 @@ function Navbar () {
   const location = useLocation();
 
   return (
-    <div className="bg-gray-900 text-white py-4 h-full">
+    <div className="bg-gray-900 text-white py-4 h-full px-8 container mx-auto flex">
+      <div className="text-lg font-bold"><img src="Logo.png" alt="logo" className="logo"></img></div>
       <div className="container mx-auto flex justify-center items-center h-full px-8">
         <div className="flex space-x-4 items-center">
-        <div className="text-lg font-bold"><img src="Logo.png" alt="logo" className="logo"></img></div>
           <div className="flex-grow"></div> {/* This will push the links to the center */}
           <div className="navlist flex justify-center space-x-4">
             <Link
