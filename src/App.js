@@ -13,10 +13,11 @@ import { GameCollectionProvider } from "./contexts/GameCollectionContext";
 
 function App() {
   const [wishlistItems, setWishlistItems] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    const storedWishlist = JSON.parse(localStorage.getItem("wishlistItems")) || [];
+    const storedWishlist =
+      JSON.parse(localStorage.getItem("wishlistItems")) || [];
     setWishlistItems(storedWishlist);
   }, []);
 
@@ -31,30 +32,71 @@ function App() {
   };
 
   const removeFromWishlist = (gameId) => {
-    const updatedWishlist = wishlistItems.filter(item => item.id !== gameId);
+    const updatedWishlist = wishlistItems.filter((item) => item.id !== gameId);
     setWishlistItems(updatedWishlist);
   };
 
   return (
-    <><GameCollectionProvider>
-      <Router>
-        <div className="App">
-          <Navbar setSearchQuery={setSearchQuery} />
-          <Routes>
-            <Route path="/" element={<HomePage addToWishlist={addToWishlist} wishlistItems={wishlistItems} />} />
-            <Route
-              path="/newdeals"
-              element={<GamesList addToWishlist={addToWishlist} wishlistItems={wishlistItems} searchQuery={searchQuery} />} />
-            <Route path="/collections" element={<CollectionsPage />} />
-            <Route
-              path="/wishlist"
-              element={<WishlistPage wishlistItems={wishlistItems} removeFromWishlist={removeFromWishlist} />} />
-            <Route path="/populargames" element={<PopularGames addToWishlist={addToWishlist} wishlistItems={wishlistItems} />} />
-            <Route path="/games" element={<GamesPage addToWishlist={addToWishlist} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />} />
-          </Routes>
-        </div>
-      </Router>
-    </GameCollectionProvider><Footer /></>
+    <>
+      <GameCollectionProvider>
+        <Router>
+          <div className="App">
+            <Navbar setSearchQuery={setSearchQuery} />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <HomePage
+                    addToWishlist={addToWishlist}
+                    wishlistItems={wishlistItems}
+                  />
+                }
+              />
+              <Route
+                path="/newdeals"
+                element={
+                  <GamesList
+                    addToWishlist={addToWishlist}
+                    wishlistItems={wishlistItems}
+                    searchQuery={searchQuery}
+                  />
+                }
+              />
+              <Route path="/collections" element={<CollectionsPage />} />
+              <Route
+                path="/wishlist"
+                element={
+                  <WishlistPage
+                    wishlistItems={wishlistItems}
+                    removeFromWishlist={removeFromWishlist}
+                  />
+                }
+              />
+              <Route
+                path="/populargames"
+                element={
+                  <PopularGames
+                    addToWishlist={addToWishlist}
+                    wishlistItems={wishlistItems}
+                  />
+                }
+              />
+              <Route
+                path="/games"
+                element={
+                  <GamesPage
+                    addToWishlist={addToWishlist}
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                  />
+                }
+              />
+            </Routes>
+          </div>
+        </Router>
+      </GameCollectionProvider>
+      <Footer />
+    </>
   );
 }
 

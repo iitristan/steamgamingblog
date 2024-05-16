@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import GameCard from "./GameCard";
+import GameCard from "./GameCardPopular";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -26,7 +26,11 @@ function PopularGames({ onAddToWishlist, wishlistItems, searchQuery }) {
         });
 
         console.log("Games data:", response.data);
-        setGames(response.data.results);
+        if (currentPage === 1) {
+          setGames(response.data.results);
+        } else {
+          setGames((prevGames) => [...prevGames, ...response.data.results]);
+        }
       } catch (error) {
         console.error("Error fetching games:", error);
       } finally {
@@ -74,12 +78,14 @@ function PopularGames({ onAddToWishlist, wishlistItems, searchQuery }) {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {games.map((game) => (
+            // <Link >
             <GameCard
               key={game.id}
               game={game}
               onAddToWishlist={onAddToWishlist}
               wishlistItems={wishlistItems}
             />
+            // </Link>
           ))}
         </div>
       )}
