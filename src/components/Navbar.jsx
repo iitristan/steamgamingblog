@@ -1,53 +1,68 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
-function Navbar () {
+function Navbar() {
   const location = useLocation();
+  const [showLinks, setShowLinks] = useState(false);
+
+  const links = [
+    { label: "Home", path: "/" },
+    { label: "Games", path: "/games" },
+    { label: "Collections", path: "/collections" },
+    { label: "Wishlist", path: "/wishlist" },
+  ];
 
   return (
-    <div className="bg-gray-900 text-white py-4 h-full px-8 container mx-auto flex">
-      <div className="text-lg font-bold"><img src="Logo.png" alt="logo" className="logo"></img></div>
-      <div className="container mx-auto flex justify-center items-center h-full px-8">
-        <div className="flex space-x-4 items-center">
-          <div className="flex-grow"></div> {/* This will push the links to the center */}
-          <div className="navlist flex justify-center space-x-4">
-            <Link
-              to="/"
-              className={`px-4 hover:text-red-600 ${
-                location.pathname === "/" ? "text-red-600" : ""
-              }`}
-            >
-              Home
-            </Link>
-            <Link
-              to="/games"
-              className={`px-4 hover:text-red-600 ${
-                location.pathname === "/games" ? "text-red-600" : ""
-              }`}
-            >
-              Games
-            </Link>
-            <Link
-              to="/collections"
-              className={`px-4 hover:text-red-00 ${
-                location.pathname === "/collections" ? "text-red-600" : ""
-              }`}
-            >
-              Collections
-            </Link>
-            <Link
-              to="/wishlist"
-              className={`px-4 hover:text-red-600 ${
-                location.pathname === "/wishlist" ? "text-red-600" : ""
-              }`}
-            >
-              Wishlist
-            </Link>
-          </div>
-        </div>
+    <nav className="bg-gray-900 text-white py-4 px-8 container mx-auto">
+      <div className="flex items-center justify-between">
+        {/* Logo */}
+        <img src="Logo.png" alt="logo" className="logo text-lg font-bold mt-2" />
+
+        {/* Navigation links (hidden on mobile) */}
+        <ul className="hidden lg:flex space-x-4">
+          {links.map((link) => (
+            <li key={link.path}>
+              <Link
+                to={link.path}
+                className={`px-4 hover:text-red-600 ${
+                  location.pathname === link.path ? "text-red-600" : ""
+                }`}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Hamburger menu for mobile */}
+        <button
+          className="lg:hidden text-white focus:outline-none"
+          onClick={() => setShowLinks(!showLinks)}
+        >
+          <FontAwesomeIcon icon={faBars} />
+        </button>
       </div>
-    </div>
+
+      {/* Mobile menu (dropdown) */}
+      {showLinks && (
+        <ul className="lg:hidden mt-4 space-y-2">
+          {links.map((link) => (
+            <li key={link.path}>
+              <Link
+                to={link.path}
+                className="block px-4 py-2 hover:text-red-600"
+                onClick={() => setShowLinks(false)}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </nav>
   );
-};
+}
 
 export default Navbar;
