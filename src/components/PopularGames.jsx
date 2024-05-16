@@ -54,7 +54,7 @@ function PopularGames({ onAddToWishlist, wishlistItems, searchQuery }) {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-8">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold">Discover Popular Games</h2>
+        <h2 className="text-2xl font-bold">Discover Desired Games</h2>
         <div className="flex space-x-2">
           <button
             className="bg-transparent-500 border hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
