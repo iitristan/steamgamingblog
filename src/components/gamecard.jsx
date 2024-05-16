@@ -9,19 +9,28 @@ const GameCard = ({
 }) => {
   const { addGameToCollection } = useGameCollection();
   const [selectedCollection, setSelectedCollection] = useState("");
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
+  const [isAddedToCollection, setIsAddedToCollection] = useState(false);
 
   const isWishlisted = wishlistItems.some((item) => item.id === game.id);
+
   const handleClick = () => {
     if (isWishlisted) {
-      onRemoveFromWishlist(game.id);
-    } else {
-      onAddToWishlist(game);
+      setSuccessMessage("Already in Wishlist");
+      return; // Don't add again
     }
+
+    onAddToWishlist(game);
+    setSuccessMessage("Added to Wishlist!");
+    setIsAddedToWishlist(true); // New state to track if the game is added to wishlist
   };
 
   const handleAddToCollection = () => {
     if (selectedCollection) {
       addGameToCollection(selectedCollection, game);
+      setSuccessMessage(`Added to ${selectedCollection}!`);
+      setIsAddedToCollection(true);
     }
   };
 
@@ -54,8 +63,13 @@ const GameCard = ({
             isWishlisted ? "bg-red-500" : "bg-blue-500"
           }`}
         >
-          {isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
+          {isAddedToWishlist
+            ? "Added to Wishlist"
+            : isWishlisted
+            ? "Remove from Wishlist"
+            : "Add to Wishlist"}
         </button>
+
         <select
           className="mt-2 option1 appearance-none relative text-white-600 ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-black-700 text-sm font-bold rounded-lg focus:ring-black-500 focus:border-black-500 block w-full p-2.5"
           value={selectedCollection}
@@ -72,9 +86,13 @@ const GameCard = ({
         </select>
         <button
           onClick={handleAddToCollection}
-          className="btn2 text-white font-bold py-2 px-4 rounded mt-4 w-full"
+          className={`btn2 text-white font-bold py-2 px-4 rounded mt-4 w-full ${
+            isAddedToCollection ? "bg-green-500" : "bg-blue-500"
+          }`}
         >
-          Add to Collection
+          {isAddedToCollection
+            ? `Added to ${selectedCollection}`
+            : "Add to Collection "}
         </button>
       </div>
     </article>
